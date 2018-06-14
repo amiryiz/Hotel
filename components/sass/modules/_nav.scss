@@ -1,0 +1,76 @@
+header #nav {
+	@include clearfix; //defined in the minix file
+	@include background-image( linear-gradient(top, lighten($navBackground, 10), $navBackground));
+	width: 100%;
+	
+	.navbar {
+		@include container; //center the navbar
+		.brand {
+			@include span(4); //take 4 column of 12 that defined in susy framework
+			float: left;
+			font-weight: $bold;
+			font-family: $headFont;
+			text-align: center; 
+			text-transform: uppercase;
+			background: $navBrandBg;
+			a {
+				color: $navForeground;
+				text-decoration: none;
+				text-align: center;
+				display: inline-block;
+				padding: 10px;
+				font-size: 1.5em;
+				
+				@include breakpoint(max-width $small) { //when the width of the page is smaller then variable "small" change the font size and don't display the span ("HOTEL")  
+						font-size: 1.2em;
+						span {display: none;}
+				} //breakpoint
+			} //a
+		} //brand
+		
+		ul {
+			@include span(8 at 4 of 12);//take 8 column of 12 starting after first fourth column that defined in susy framework
+			li {
+				float: left;	
+				a {
+					color: $navForeground;
+					font: $mainFont; 
+					font-size: 1em;
+					display: inline-block;
+					padding: 10px 10px 10px 45px;
+					text-decoration: none;			
+					
+					//icon style
+					background-size: 35px;
+					background-repeat: no-repeat;
+					background-position: 2px;
+					
+					&.info { background-image: url('../images/icons/info.png');}
+					&.rooms { background-image: url('../images/icons/rooms.png');}
+					&.dining { background-image: url('../images/icons/dining.png');}
+					&.events { background-image: url('../images/icons/events.png');}
+					&.attractions { background-image: url('../images/icons/attractions.png');}
+					
+					&:hover {
+					  background-color: $navHover;
+					  color: blue;
+					} //hover 
+
+					@include breakpoint(0 $small) { // when the width of the page is between 0 to variable "small" change the padding and don't display the spans
+						padding: 10px 18px;
+						&::after { // insert the text that isn't shown to center the icons 
+							content: '\000a0'; // can't insert Non-breaking space (" ") like in HTML code instead insert a hexadecimal value of this char
+							display: block;
+						}
+						span {display: none;}		
+					} //breakpoint 0-small
+					
+					@include breakpoint($small $medium) {
+						padding-left: 10px; // when we had the icons the padding left was 45px to pix it we will change it to 10px
+						&.icon { background-image: none; } // don't display the icons 
+					} //breakpoint small-medium
+				} //a
+			} //li		
+		} //ul	
+	} //navbar	
+} //header #nav

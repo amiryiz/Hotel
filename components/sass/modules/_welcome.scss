@@ -1,0 +1,41 @@
+#welcome {
+    @include background-image( linear-gradient(top, $yellow, $orange));
+    article {
+        text-align: center;
+        @include container(70%);
+        @include breakpoint($small) {
+            @include container(33em);
+            padding: 60px 0;
+        } //breakpiont
+    } //article
+
+    h1 {
+        //font-weight: normal;
+        line-height: 100%;
+        color: darken($orange, 30);
+        padding: 20px 0;
+    } //h1
+
+    .gallery {
+        @include clearfix; //defined in the minix file
+        img{
+            @include border-radius(10%); 
+            display: none; 
+            
+            @include breakpoint($small){ //at least small size
+                @include gallery(1 of 4);
+                display: inline;
+                &.hidesm {display: none;} // dont display the phono with hidesm class (html file)  
+            } //breakpoint($small)
+
+            @include breakpoint($medium){ //at least medium size
+                @include gallery(1 of 5);
+                display: inline;
+                &.hidesm {display: inline;}
+            } //breakpoint($medium)
+            
+            
+        } //img
+    } //gallery
+} //welcome
+
